@@ -1,0 +1,112 @@
+body {
+    padding : 0px var(--main-padding);
+}
+header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-right: 20px;
+    min-width: 612px;
+
+}
+
+#head{
+    background-color: rgba(0,0,0,0.8);
+    height: 50px;
+    border-radius: 8px;
+}
+
+#head:hover {
+    cursor:pointer;
+}
+
+#icons {
+    display: flex;
+}
+
+#icons li {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    cursor:pointer;
+
+}
+
+#icons li:first-child:hover {
+    align-items:baseline;
+    box-sizing: border-box;
+    border-bottom: 0.5px solid black;
+}
+
+#icons li:last-child:hover {
+    align-items:baseline;
+    box-sizing: border-box;
+    border-bottom: 0.5px solid black;
+}
+
+
+#icons i {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+
+.header-column__head {
+    font-size:  250%;
+    color: white;
+    margin: 20px 40px;
+
+}
+
+.nav-bar {
+    margin-top: 60px;
+    min-width: 612px;
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: var(--main-border);
+    font-weight: 600;
+}
+
+.chart-list__btn {
+    width: 15%;
+    height: 45px;
+    display: flex;
+    padding-bottom: 3px;
+	min-width: 153px;
+	box-sizing: border-box;
+
+    justify-content: center;
+    align-items: center;
+    border-right: var(--main-border);
+}
+
+.chart-list__btn:hover {
+    background-color: whitesmoke;
+    cursor:pointer;
+
+}
+
+.chart-list__btn.active {
+    background-color: rgba(0,0,0,0.2)
+}
+
+.chart-list__btn > span {
+    font-size: 130%;
+    margin-right: 10px;
+}
+.chart-list__btn > img {
+    width: 30px;
+    height: 30px;
+}
+
+
+
+/*반응형*/
+@media screen and (max-width: 768px) {
+
+    body {
+        min-width: 450px;
+    }
+
+}

@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Nanum+Gothic+Coding&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+/* 화면 */
+@import "reset.css";
+@import "main.css";
+@import "result-sector.css";
+@import "generate-sector.css";
+
+
+@import "variables.css";
+
+
+body {
+    font-family: "Nanum Gothic", monospace;
+}
+
+header {
+    font-family: "Lobster", sans-serif;
+}

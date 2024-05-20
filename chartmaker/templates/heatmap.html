@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
+    <meta id="_csrf_header" name="_csrf_header"
+        th:content="${_csrf.headerName}" />
+    <title>Welcome to Chart-generator</title>
+
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://kit.fontawesome.com/307639f507.js" , crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+    
+
+
+</head>
+
+
+<body>
+<header>
+    <div id="head" class="header-column" onclick="location.href='http://127.0.0.1:5000/heatmap/'">
+        <span class="header-column__head">chart-generator</span>
+    </div>
+    <ul id="icons" class="header-column">
+        <li onclick="window.open('https://www.instagram.com/sjhoney_99/')">
+            <i class="fa-brands fa-instagram"></i>
+            <span class="icons__tip">Contact DM</span>
+        </li>
+        <li>
+            <i class="fa-regular fa-circle-question"></i>
+            <span class="icons__tip">Show Tips</span>
+        </li>
+
+    </ul>
+
+
+</header>
+
+<nav class="nav-bar">
+    <div class="chart-list__btn" id="scatterplot" onclick="location.href='http://127.0.0.1:5000/scatterplot/'">
+        <span>scatterplot</span>
+        <img width="32" height="32" src="https://img.icons8.com/windows/32/scatter-plot.png" alt="scatter-plot"/>
+    </div>
+    <div class="chart-list__btn" id="heatmap" onclick="location.href='http://127.0.0.1:5000/heatmap/'">
+        <span>heatmap</span>
+        <img src="https://img.icons8.com/plasticine/100/heat-map.png" alt="heat-map" />
+    </div>
+    <div class="chart-list__btn" id="wordcloud">
+        <span>wordcloud</span>
+        <img width="32" height="32" src="https://img.icons8.com/ios/32/cloud--v1.png" alt="cloud--v1"/>
+    </div>
+    <div class="chart-list__btn" id="geo">
+        <span>geochart</span>
+        <img width="32" height="32" src="https://img.icons8.com/ios/32/map--v1.png" alt="map--v1"/>
+    </div>
+</nav>
+
+<main class="main-screen">
+	<div class="main-screen__generator">
+		<div class="main-screen__generator__datainput">
+			<div id="title-wrapper">
+				<span id="datainput__title">1. Input your data</span>
+			</div>
+			<div id="textarea-wrapper">
+				<textarea id="textarea" class="main-screen__generator__datainput__textarea" placeholder="paste your table here..."></textarea>
+			</div>       
+			<div id="inputTableBtnWrapper" class="btn-wrapper">
+				<button type="button" id="input-table__btn">Input Table!</button>
+			</div>
+
+		</div>
+		<div class="main-screen__generator__variables">
+			<div id="title-wrapper">
+				<span id="input-variables__title">2. Select variables</span>
+			</div>
+			<form id="input-variables">
+				<div id="heatmap-variables">
+					<div id="full">
+						<span>x-axis</span>
+						<select id="heatmap__x-axis" class="heatmap__var main" name="x_axis"></select>
+						<div id="checkbox-wrapper">
+							<label for="isdatetime">
+								datetime
+								<input type="checkbox" id="x_datetime" name="x_datetime">
+							</label>
+						</div>
+					</div>
+					<div id="full">                                    
+						<span>y-axis</span>
+						<select id="heatmap__y-axis" class="heatmap__var main" name="y_axis"></select>
+						<div id="checkbox-wrapper">
+							<label for="isdatetime">
+								datetime
+								<input type="checkbox" id="y_datetime" name="y_datetime">
+							</label>
+						</div>
+					</div>
+					<div id="half" class="tooltip">
+						<div>
+							<span>value</span>
+							<select id="heatmap__value" class="heatmap__var sub" name="value"></select>
+						</div>
+						<div>
+							<span>aggregation</span>
+							<select id="heatmap__agg" class="heatmap__var sub" name="agg"></select>
+						</div>
+						<span class="tooltip_text">
+							Generate heatmap by pivot matrix
+						</span>
+					</div>
+					<div id="half" class="tooltip">
+						<div>
+							<span>facet_col</span>
+							<select id="heatmap__facet_col" class="heatmap__var sub" name="facet_col"></select>
+						</div>
+						<div>
+							<span>facet_row</span>
+							<select id="heatmap__facet_row" class="heatmap__var sub" name="facet_row"></select>
+						</div>
+						<span class="tooltip_text">
+							facet(object value) :<br><br>
+							You can devide chart by sub axis
+						</span>
+					</div>
+					<div id="half" class="tooltip">
+						<div>
+							<span>nbins_col</span>
+							<textarea id="heatmap__nbins_col" class="nbins" name="nbins_col"></textarea>
+						</div>
+						<div>
+							<span>nbins_row</span>
+							<textarea id="heatmap__nbins_row" class="nbins" name="nbins_row"></textarea>
+						</div>
+						<span class="tooltip_text">
+							nbins(int) :<br><br>
+							You can divide the number of cells<br><br>
+							(generator sets the optimal value)
+						</span>
+					</div>
+					<div id="title">
+						<span>title</span>
+						<textarea id="heatmap__title" name ="title" placeholder="Write chart title"></textarea>
+					</div>
+				</div>
+				<div class="btn-wrapper">
+					<button id="draw-chart__btn" type="submit">draw graph</button>
+				</div>
+			</form>
+		</div> 
+	</div>
+	<div class ="main-screen__result">
+        <div id="result_chart">
+        </div>
+    </div>
+    <div id="loading-overlay">
+        <div id="loading-spinner"></div>
+    </div>
+
+</main>
+
+</body>
+
+<script>
+$(document).ready(function(){
+
+    var currentPath = window.location.pathname;
+    $(".chart-list__btn").each(function() {
+        var buttonId = $(this).attr("id");
+
+        // 현재 경로와 버튼의 id를 이용한 경로가 일치하면 active 클래스 추가
+        if (currentPath === '/' + buttonId + '/') {
+            $(this).addClass("active");
+        }
+    });
+
+
+    // 로딩창구현
+    $(document).ajaxStart(function() {
+        $('#loading-overlay').fadeIn();
+    });
+
+    $(document).ajaxStop(function() {
+        $('#loading-overlay').fadeOut();
+    });
+
+    //textarea 숫자만 입력받기
+
+
+    // input_data 버튼시 데이터 처리
+    var input_data =   
+    function() {
+        var data = $("#textarea").val();
+        var strippedValue = data.replace(/[\t\n\s]/g, '');
+        if (strippedValue === '') {
+            Swal.fire('No visible data entered.');
+        }
+        
+        else {
+            $.ajax({
+            type: "POST",
+            url: "/heatmap/process_data",
+            data: {"data": data},
+            success: function(response) {
+                if (response.Result ==="success") {
+                    $("#textarea-wrapper").replaceWith(response.table);
+                    $("#inputTableBtnWrapper").remove();
+
+                    $(".main").html(response.options);
+                    $(".sub:not(#heatmap__agg)").html(response.NoneOptions);
+                    $("#heatmap__agg").html(response.AggOptions)
+
+                    $(".nbins").val("auto");
+                    $(".nbins").on("input", function() {
+                        var element = $(this);
+                        var inputValue = element.val().replace(/[^0-9]/gi, "");
+                        element.val(inputValue);
+                    });
+
+                    $(".nbins").on("focusout", function() {
+                        var element = $(this);
+                        var inputValue = element.val().trim(); // 입력값의 앞뒤 공백을 제거
+                        if (inputValue !== ""){
+                            element.val(inputValue);
+                        } else {
+                            element.val("auto")
+                        }
+
+                    });
+
+                }
+                else {
+                    Swal.fire({
+                        title: "Please check your data",
+                        html: response.ErrorMsg.replace(/\n/g, '<br>')
+                        });
+                }
+            },
+            error: function(response) {
+                alert("Undefined Error");
+            }
+
+            });
+
+        }
+    };
+
+    // drawchart 버튼 시 처리
+    function draw_chart(id) {
+        var variables = $("#input-variables").serializeArray();
+        var variablesObject = {};
+        for (var i = 0; i < variables.length; i++) {
+            variablesObject[variables[i].name] = variables[i].value;}
+            
+        if ($("#heatmap__x-axis").val()===null) {
+            Swal.fire('No data has input')
+        }
+
+        else {
+            $.ajax({
+            type: "POST",
+            url: "/heatmap/draw_chart",
+            data: JSON.stringify({"variables":variablesObject, "id":id}),
+            contentType: 'application/json',
+            dataType: 'json',
+                
+            success: function(response) {
+
+                if (response.Result ==="success") {
+                    // 차트 생성
+                    chartData = JSON.parse(response.ChartJson);
+                    chartContainer = document.getElementById('result_chart');
+                    chartData.layout.coloraxis.reversescale = true
+                    chartData.layout.coloraxis.colorscale = "Blues"
+                    Plotly.newPlot(chartContainer, chartData.data, chartData.layout, {responsive: true})
+
+                    // drawchart-> re-draw 버튼으로 변경
+                    
+                    $("#draw-chart__btn").html("re-draw");
+
+                    // 차트를 새로 표시할 때 마다 표시되는 칸을 초기화 시킨 후 표시
+                    $("#result_msg").remove();
+                    var result_line = "<div id='result_msg'><span>Result</span>\<div id='result_line'></div></div>";
+                    $(".main-screen__result").before(result_line);
+                    $(".main-screen__result__styling").remove();
+
+                    // 크기, 스타일 조절하는 섹터 추가
+                    var styling =
+                    `
+                    <div class="main-screen__result__styling">
+                        <div id="factors-wrapper">
+                            <span>width</span>
+                            <input type="text" id="resize_width">
+                            <span>height</span>
+                            <input type="text" id="resize_height">
+                            <span>style</span>
+                            <select id="styling">
+                            </select>
+                        </div>
+                        <div class="btn-wrapper">
+                            <button id="refactor__btn">refactor</button>
+                        </div>
+                    </div>
+                    `
+                    $("#result_chart").after(styling)
+
+                    var colorOptions = `Blues,Blackbody,Bluered,Cividis,Earth,Electric,Greens,Greys,Hot,Jet,
+                                        Portland,Rainbow,Reds,Viridis,YlGnBu,YlOrRd`;
+                    
+                    var colorArray = colorOptions.split(',');
+
+                    var $selectElement = $('#styling');
+
+                    colorArray.forEach(function(color) {
+                    $selectElement.append($('<option>', {
+                        value: color,
+                        text: color
+                    }));
+                    });
+                    
+                    var FirstHeight = parseInt($(".plot-container").css("height"))
+                    var resultWidth = parseInt($("#result_chart").css("width"))
+                    var stylingWidth = parseInt($(".main-screen__result__styling").css("width"))
+
+                    var percentWidth=Math.round(parseFloat(resultWidth/stylingWidth*0.13) * 100) + '%'
+
+
+                    $("#resize_height").val(FirstHeight);
+                    $("#resize_width").val(percentWidth);
+                    $("#factors-wrapper input").on("input", function() {
+                        var element = $(this);
+                        var inputValue = element.val().replace(/[^0-9]/gi, "");
+
+                        element.val(inputValue);
+                    });
+
+                    $("#resize_width").on("focusout", function() {
+                        var element = $(this);
+                        var inputValue = element.val().trim(); // 입력값의 앞뒤 공백을 제거
+                        if ((inputValue !== "") * (!inputValue.endsWith("%"))) {
+                            element.val(inputValue + "%");
+                        } else {
+                            var inputValue = "85%"
+                            element.val(inputValue)
+                        }
+
+                    });
+                    console.log(chartData.layout);
+
+
+                } else {
+                    Swal.fire(response.ErrorMsg)
+                }
+            },
+            error: function(response) {
+                Swal.fire("Undefined Error")
+            }
+            });
+        };
+    };
+    
+    /*textarea tab 방지*/
+    $(document).on("keydown", "#textarea", function(e) {
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            // 현재 커서 위치 구하기
+            var start = this.selectionStart;
+            var end = this.selectionEnd;
+
+            // textarea에 현재 커서 위치에 Tab 문자 추가
+            var text = $(this).val();
+            $(this).val(text.substring(0, start) + '\t' + text.substring(end));
+
+            // 커서 위치 조정
+            this.selectionStart = this.selectionEnd = start + 1;
+        }}
+    );
+
+    
+
+    var textArea = $(".main-screen__generator__datainput").html();
+    var inputVars = $("#input-variables").html();
+
+    $(document).on("click", "#reset-btn", function() {
+        $(".main-screen__generator__datainput").html(textArea);
+        $("#input-variables").html(inputVars);
+        $("#result_chart").empty();
+        $("#result_chart").css({width: "85%", height: 0});
+        $("#result_msg").remove();
+        $(".main-screen__result__styling").remove();
+        $("#draw-chart__btn").html("draw graph");
+
+    });
+
+    $(document).on("click", "#input-table__btn", input_data);
+    $(document).on("click", "#draw-chart__btn", function(event) {
+        event.preventDefault();
+        draw_chart("!corr")
+    });
+
+    $(document).on("click", "#show-correlation__btn", function(event) {
+        event.preventDefault();
+        draw_chart("corr")
+    });
+
+
+    $(document).on("click", "#refactor__btn", function() {
+        
+        var resizeHeight = $("#resize_height").val();
+        var resizeWidth = $("#resize_width").val();
+
+        if ((resizeHeight >= 200)*(resizeHeight <=1200)*
+        (parseFloat(resizeWidth.replace("%", "")) >= 30)*
+        (parseFloat(resizeWidth.replace("%", ""))<=85)){
+            
+            $("#result_chart").css({
+                height: resizeHeight,
+                width: resizeWidth
+            });
+            var colorScale= $("#styling").val()
+
+            Plotly.relayout(chartContainer, {"coloraxis.colorscale" : colorScale});
+            window.dispatchEvent(new Event('resize'));
+            console.log(chartData.layout);
+
+        } else {
+            Swal.fire({
+                title: "Please check your data",
+                html: "Width should be between 30% and 85%<br>Height should be between 200px and 1200px",
+            })
+        };
+
+    })
+
+    $(document).on("click", "#wordcloud", function() {
+        Swal.fire({
+                title: "Coming Soon..",
+            })
+    })
+
+    $(document).on("click", "#geo", function() {
+        Swal.fire({
+                title: "Coming Soon..",
+            })
+    })
+
+
+});
+</script>
+</html>

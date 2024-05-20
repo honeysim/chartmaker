@@ -1,0 +1,406 @@
+.chart-list-top {
+    white-space: nowrap;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.main-screen {
+    margin-top: 40px;
+}
+
+.main-screen__generator {
+	
+    display: flex;
+    justify-content: space-between;
+    height: 540px;
+}
+
+.main-screen__generator__datainput {
+    padding: 0 20px;
+    width: 50%;
+	height:100%;
+	box-sizing: border-box;
+	min-width: var(--min-width);
+}
+
+
+#input-variables__title{
+    font-size: 22px;
+    font-weight: 600;
+}
+
+#datainput__title{
+    font-size: 22px;
+    font-weight: 600;
+    
+}
+
+#textarea-wrapper {
+	height:80%;
+	margin-bottom: 15px;
+	
+}
+#textarea {
+    width: 100%;
+	height: 100%;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+
+#title-wrapper {
+    padding-bottom: 15px;
+	margin-bottom: 25px;
+    border-bottom: var(--main-border);
+}
+
+#table-wrapper {
+    border-radius: 5px;
+    border: 1px solid black;    
+    overflow: auto;
+
+    width: 100%;
+    height: 80%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+
+.btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#show-correlation__btn {
+    background-color: #666666; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트색 */
+    border: none; /* 테두리 없음 */
+    padding: 5px 10px; /* 패딩 */
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+#show-correlation__btn:hover {
+    background-color: #474a51/* 호버 시 색상 변경 */
+}
+
+#input-table__btn {
+    background-color: #666666; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트색 */
+    border: none; /* 테두리 없음 */
+    padding: 5px 10px; /* 패딩 */
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s ease;
+}
+
+#input-table__btn:hover {
+    background-color: #474a51/* 호버 시 색상 변경 */
+}
+
+#draw-chart__btn {
+    background-color: #666666; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트색 */
+    border: none; /* 테두리 없음 */
+    padding: 5px 10px; /* 패딩 */
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s ease;
+}
+
+#draw-chart__btn:hover {
+    background-color: #474a51/* 호버 시 색상 변경 */
+}
+
+#reset-btn {
+    background-color: #666666; /* 버튼 배경색 */
+    color: white; /* 버튼 텍스트색 */
+    border: none; /* 테두리 없음 */
+    padding: 5px 10px; /* 패딩 */
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s ease;
+}
+
+#reset-btn:hover {
+    background-color: #474a51/* 호버 시 색상 변경 */
+}
+
+
+/* table */
+
+.table-wrapper{
+    margin: 10px 70px 70px;
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+}
+
+.result-table {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+.result-table td, .result-table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.result-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+}
+
+.result-table thead th {
+    color: #ffffff;
+    background: #4FC3A1;
+}
+
+
+.result-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+}
+
+.result-table tr:nth-child(even) {
+    background: #F8F8F8;
+}
+
+/* 변수 넣는 부분 */
+.main-screen__generator__variables {
+    width: 50%;
+	height: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+	min-width: var(--min-width);
+
+}
+
+#input-variables {
+    width: 100%;
+    height: 80%;
+    box-sizing: border-box;
+
+}
+
+#input-variables span:not(.tooltip_text){
+    font-size: 16px;
+    font-weight: 600;
+
+}
+
+#scatter-variables{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.scatter__var {
+    width: 100%;
+    height: 25px;
+}
+
+#scatter-variables textarea {
+    box-sizing: border-box;
+    margin-top: 12px;
+    resize: none;
+    width: 100%;
+    height: 25px;
+}
+
+
+#heatmap-variables{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+#full select{
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+#heatmap-variables #full select{
+	margin-bottom: 3px;
+}
+
+#heatmap-variables #full:nth-child(2) {
+	margin-bottom:10px;
+}
+
+#half select{
+    margin: 12px 0px;
+}
+
+.heatmap__var {
+    width: 100%;
+    height: 25px;
+}
+
+#checkbox-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#checkbox-wrapper label {
+	font-size: 14px;
+}
+
+
+#half {
+    display: flex;
+    justify-content: space-between;
+}
+
+#half > div {
+    width: 48%;
+}
+
+
+#heatmap-variables textarea {
+    box-sizing: border-box;
+    margin-top: 15px;
+    resize: none;
+    width: 100%;
+    height: 25px;
+}
+
+#heatmap-variables #half textarea {
+	margin-bottom: 12px;
+
+}
+
+/* 툴팁 */
+.tooltip {
+    position: relative;
+    display: block;
+
+}
+
+.tooltip_text {
+    font-size: 8px;
+    visibility: hidden;
+    width: 130px;
+    background-color: #666666;
+    color: #fff;
+    text-align:left;
+
+    border-radius: 3px;
+    padding: 5px 5px;
+    
+  
+    position: absolute;
+    z-index: 1;
+    top: 5%;
+    right: -20%; 
+  }
+
+  .tooltip_text_sub {
+    visibility: hidden;
+    width: 130px;
+    background-color: #666666;
+    color: #fff;
+    text-align:left;
+
+    border-radius: 3px;
+    padding: 5px 5px;
+    
+  
+    position: absolute;
+    z-index: 1;
+    top: 5%;
+    right: -80%; 
+  }
+
+.tooltip:hover .tooltip_text {
+    visibility: visible;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.tooltip:hover .tooltip_text_sub {
+    visibility: visible;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.tooltip_text::after {
+    content: " ";
+    position: absolute;
+    border-style: solid;
+    border-width: 5px;
+    top: 10%;
+    right: 100%;
+    border-color: transparent #666666 transparent transparent;
+}
+
+.tooltip_text_sub::after {
+    content: " ";
+    position: absolute;
+    border-style: solid;
+    border-width: 5px;
+    top: 10%;
+    right: 100%;
+    border-color: transparent #666666 transparent transparent;
+}
+
+/* 반응형 */
+
+@media screen and (max-width: 768px) {
+	
+	.main-screen__generator {
+        display:flex;
+        flex-direction: column;
+        height: 1100px;
+		order:1;
+    }
+	
+	.main-screen__generator__datainput {
+        width: 100%;
+		margin-bottom: 5%;
+        min-height: 50%;
+    }
+    .main-screen__generator__variables{
+		width: 100%;
+		margin-bottom: 1000px;
+        min-height: 50%;
+
+    }
+
+    #result_msg {
+        width:100%;
+        order:2;
+    }
+	
+	.main-screen__result{
+		width: 100%;
+		order:3;
+	}
+}
